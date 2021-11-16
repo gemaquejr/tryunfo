@@ -1,6 +1,7 @@
 import React from 'react';
 import Form from './components/Form';
 import Card from './components/Card';
+import Deck from './components/Deck';
 
 class App extends React.Component {
   constructor() {
@@ -18,10 +19,11 @@ class App extends React.Component {
       cardTrunfo: false,
       hasTrunfo: false,
       isSaveButtonDisabled: true,
+      savedCard: [],
     };
   }
 
-  onInputChange({ target }) {
+  onInputChange = ({ target }) => {
     const { name } = target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
 
@@ -40,7 +42,9 @@ class App extends React.Component {
       const maxAttr = 90;
       const maxSumOfAttr = 210;
       const checkEmpty = fieldInputs.some((data) => data.length === 0);
-      const checkAtt = cardAttr.some((data) => data > maxAttr || data < 0 || data === '');
+      const checkAtt = cardAttr.some(
+        (data) => data > maxAttr || data < 0 || data === '',
+      );
       const sumOfAttr = Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3);
 
       if (checkAtt === true || checkEmpty === true) {
@@ -53,9 +57,39 @@ class App extends React.Component {
     });
   }
 
+  saveDeckCard = (card) => {
+    this.setState((prevState) => (
+      { savedCard: [...prevState.savedCard, card] }));
+  };
+
   onSaveButtonClick = (event) => {
     event.preventDefault();
     this.validationHasTrunfo();
+
+    const {
+      cardName,
+      cardDescription,
+      cardImage,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardRare,
+      cardTrunfo,
+      hasTrunfo,
+    } = this.state;
+
+    this.saveDeckCard({
+      cardName,
+      cardDescription,
+      cardImage,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardRare,
+      cardTrunfo,
+      hasTrunfo,
+    });
+
     this.setState({
       cardName: '',
       cardDescription: '',
@@ -66,37 +100,35 @@ class App extends React.Component {
       cardRare: 'normal',
       cardTrunfo: false,
     });
-  }
+  };
 
   validationHasTrunfo = () => {
     const { cardTrunfo } = this.state;
     if (cardTrunfo) {
       this.setState({ hasTrunfo: true });
     }
-  }
+  };
 
   render() {
     const {
-      state: {
-        cardName,
-        cardDescription,
-        cardImage,
-        cardAttr1,
-        cardAttr2,
-        cardAttr3,
-        cardRare,
-        cardTrunfo,
-        isSaveButtonDisabled,
-        hasTrunfo,
-      },
-      onInputChange,
-    } = this;
+      cardName,
+      cardDescription,
+      cardImage,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardRare,
+      cardTrunfo,
+      isSaveButtonDisabled,
+      hasTrunfo,
+      savedCard,
+    } = this.state;
 
     return (
       <div>
         <h1>Tryunfo</h1>
         <Form
-          onInputChange={ onInputChange }
+          onInputChange={ this.onInputChange }
           cardName={ cardName }
           cardDescription={ cardDescription }
           cardImage={ cardImage }
@@ -110,7 +142,7 @@ class App extends React.Component {
           onSaveButtonClick={ this.onSaveButtonClick }
         />
         <Card
-          onInputChange={ onInputChange }
+          onInputChange={ this.onInputChange }
           cardName={ cardName }
           cardDescription={ cardDescription }
           cardImage={ cardImage }
@@ -121,6 +153,9 @@ class App extends React.Component {
           cardTrunfo={ cardTrunfo }
           isSaveButtonDisabled={ isSaveButtonDisabled }
           onSaveButtonClick={ this.onSaveButtonClick }
+        />
+        <Deck
+          savedCard={ savedCard }
         />
       </div>
     );
