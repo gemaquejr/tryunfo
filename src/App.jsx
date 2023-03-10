@@ -2,6 +2,7 @@ import React from 'react';
 import Form from './components/Form';
 import Card from './components/Card';
 import Deck from './components/Deck';
+import Filters from './components/Filters';
 
 class App extends React.Component {
   constructor() {
@@ -126,6 +127,9 @@ class App extends React.Component {
       isSaveButtonDisabled,
       hasTrunfo,
       savedCard,
+      filterValue,
+      filterRare,
+      filterTrunfo,
     } = this.state;
 
     return (
@@ -144,6 +148,12 @@ class App extends React.Component {
           hasTrunfo={ hasTrunfo }
           isSaveButtonDisabled={ isSaveButtonDisabled }
           onSaveButtonClick={ this.onSaveButtonClick }
+        />
+        <Filters
+          filterChange={ this.filterChange }
+          filterValue={ filterValue }
+          filterRare={ filterRare }
+          filterTrunfo={ filterTrunfo }
         />
         <Card
           onInputChange={ this.onInputChange }
