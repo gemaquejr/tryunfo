@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './style.css';
+
 class Card extends React.Component {
   render() {
     const {
@@ -15,42 +17,40 @@ class Card extends React.Component {
     } = this.props;
 
     return (
-      <section>
-        <p data-testid="name-card">
-          { cardName }
-        </p>
-
-        <img
-          data-testid="image-card"
-          src={ cardImage }
-          alt={ cardName }
-        />
-        <p data-testid="description-card">
-          { cardDescription }
-        </p>
-        <div>
-          <p data-testid="attr1-card">
-            Atributo 01
+      <section className="container-card">
+        <div className="card-style">
+          <p className="title-card" data-testid="name-card">
+            { cardName }
+          </p>
+          <img
+            className="image-card"
+            data-testid="image-card"
+            src={ cardImage }
+            alt={ cardName }
+          />
+          <p data-testid="description-card">
+            { cardDescription }
+          </p>
+          <hr />
+          <p className="paragraph-style" data-testid="attr1-card">
+            Atributo 1................
             { cardAttr1 }
           </p>
-          <p data-testid="attr2-card">
-            Atributo 02
+          <p className="paragraph-style" data-testid="attr2-card">
+            Atributo 2................
             { cardAttr2 }
           </p>
-          <p data-testid="attr3-card">
-            Atributo 03
+          <p className="paragraph-style" data-testid="attr3-card">
+            Atributo 3................
             { cardAttr3 }
           </p>
+          <hr />
+          <p data-testid="rare-card">
+            { cardRare }
+          </p>
+          { cardTrunfo && <p data-testid="trunfo-card">Super Trunfo</p> }
         </div>
-        <p data-testid="rare-card">
-          Raridade:
-          { cardRare }
-        </p>
-
-        { cardTrunfo && <p data-testid="trunfo-card">Super Trunfo</p> }
-
       </section>
-
     );
   }
 }
