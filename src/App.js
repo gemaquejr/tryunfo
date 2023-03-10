@@ -6,8 +6,6 @@ import Deck from './components/Deck';
 class App extends React.Component {
   constructor() {
     super();
-    this.onInputChange = this.onInputChange.bind(this);
-
     this.state = {
       cardName: '',
       cardDescription: '',
@@ -15,7 +13,7 @@ class App extends React.Component {
       cardAttr1: '',
       cardAttr2: '',
       cardAttr3: '',
-      cardRare: '',
+      cardRare: 'normal',
       cardTrunfo: false,
       hasTrunfo: false,
       isSaveButtonDisabled: true,
@@ -105,7 +103,13 @@ class App extends React.Component {
   validationHasTrunfo = () => {
     const { cardTrunfo } = this.state;
     if (cardTrunfo) {
-      this.setState({ hasTrunfo: true });
+      this.setState(
+        { hasTrunfo: true },
+      );
+    } else {
+      this.setState(
+        { hasTrunfo: false },
+      );
     }
   };
 
