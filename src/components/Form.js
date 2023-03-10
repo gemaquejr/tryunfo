@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-class Form extends Component {
+class Form extends React.Component {
   render() {
     const {
       cardName,
@@ -17,100 +17,146 @@ class Form extends Component {
       onInputChange,
       onSaveButtonClick,
     } = this.props;
+
     return (
-      <div>
-        <form>
-          <label htmlFor="cardName">
-            <input
-              type="text"
-              data-testid="name-input"
-              name="cardName"
-              value={ cardName }
-              onChange={ onInputChange }
-            />
-          </label>
-          <label htmlFor="cardDescription">
-            <textarea
-              data-testid="description-input"
-              name="cardDescription"
-              value={ cardDescription }
-              onChange={ onInputChange }
-            />
-          </label>
-          <label htmlFor="cardAttr1">
-            <input
-              type="number"
-              data-testid="attr1-input"
-              name="cardAttr1"
-              value={ cardAttr1 }
-              onChange={ onInputChange }
-            />
-          </label>
-          <label htmlFor="cardAttr2">
-            <input
-              type="number"
-              data-testid="attr2-input"
-              name="cardAttr2"
-              value={ cardAttr2 }
-              onChange={ onInputChange }
-            />
-          </label>
-          <label htmlFor="cardAttr3">
-            <input
-              type="number"
-              data-testid="attr3-input"
-              name="cardAttr3"
-              value={ cardAttr3 }
-              onChange={ onInputChange }
-            />
-          </label>
-          <label htmlFor="cardImage">
-            <input
-              type="text"
-              data-testid="image-input"
-              name="cardImage"
-              value={ cardImage }
-              onChange={ onInputChange }
-            />
-          </label>
+      <form action="">
+        <fieldset>
+          <div>
+            <label htmlFor="cardName">
+              Nome:
+              <input
+                id="cardName"
+                name="cardName"
+                data-testid="name-input"
+                type="text"
+                value={ cardName }
+                onChange={ onInputChange }
+              />
+            </label>
+          </div>
+          <div>
+            <label
+              htmlFor="CardDescription"
+            >
+              Descrição:
+              <textarea
+                id="cardDescription"
+                name="cardDescription"
+                data-testid="description-input"
+                placeholder="Descreva esse card."
+                value={ cardDescription }
+                onChange={ onInputChange }
+              />
+            </label>
+          </div>
+          <div>
+            <label
+              htmlFor="CardAttr1"
+            >
+              Primeiro atributo:
+              <input
+                id="cardAttr1"
+                name="cardAttr1"
+                data-testid="attr1-input"
+                type="number"
+                value={ cardAttr1 }
+                onChange={ onInputChange }
+              />
+            </label>
+          </div>
+          <div>
+            <label
+              htmlFor="CardAttr2"
+            >
+              Segundo atributo:
+              <input
+                id="cardAttr2"
+                name="cardAttr2"
+                data-testid="attr2-input"
+                type="number"
+                value={ cardAttr2 }
+                onChange={ onInputChange }
+              />
+            </label>
+          </div>
+          <div>
+            <label
+              htmlFor="CardAttr3"
+            >
+              Terceiro atributo:
+              <input
+                id="cardAttr3"
+                name="cardAttr3"
+                data-testid="attr3-input"
+                type="number"
+                value={ cardAttr3 }
+                onChange={ onInputChange }
+              />
+            </label>
+          </div>
+          <div>
+            <label htmlFor="cardImage">
+              Insira a url com a imagem
+              <input
+                id="cardImage"
+                name="cardImage"
+                data-testid="image-input"
+                type="text"
+                value={ cardImage }
+                onChange={ onInputChange }
+              />
+            </label>
+          </div>
           <label htmlFor="cardRare">
+            Raridade:
             <select
               data-testid="rare-input"
               name="cardRare"
+              id="cardRare"
               value={ cardRare }
               onChange={ onInputChange }
             >
-              <option value="normal">Normal</option>
-              <option value="raro">Raro</option>
-              <option value="muito raro">Muito Raro</option>
+              <option value="normal">normal</option>
+              <option value="raro">raro</option>
+              <option value="muito raro">muito raro</option>
             </select>
           </label>
-          <label
-            htmlFor="hastrunfo"
-          >
-            {hasTrunfo ? <p>Você já tem um Super Trunfo em seu baralho</p> : (
-              <input
-                type="checkbox"
-                data-testid="trunfo-input"
-                name="cardTrunfo"
-                checked={ cardTrunfo }
-                onChange={ onInputChange }
-              />)}
-          </label>
+
+          <div>
+            { hasTrunfo
+              ? <span> Você já tem um Super Trunfo em seu baralho.</span>
+              : (
+                <label htmlFor="cardTrunfo">
+                  É a super trunfo?
+                  <input
+                    data-testid="trunfo-input"
+                    type="checkbox"
+                    id="cardTrunfo"
+                    name="cardTrunfo"
+                    checked={ cardTrunfo }
+                    onChange={ onInputChange }
+                  />
+                </label>
+              ) }
+          </div>
+
           <button
-            type="submit"
+            id="save"
+            name="save"
             data-testid="save-button"
-            name="isSaveButtonDisabled"
+            type="submit"
             disabled={ isSaveButtonDisabled }
             onClick={ onSaveButtonClick }
           >
             Salvar
           </button>
-        </form>
-      </div>
+        </fieldset>
+      </form>
     );
   }
 }
+
+export default Form;
 
 Form.propTypes = {
   cardName: PropTypes.string.isRequired,
@@ -126,5 +172,3 @@ Form.propTypes = {
   onInputChange: PropTypes.func.isRequired,
   onSaveButtonClick: PropTypes.func.isRequired,
 };
-
-export default Form;
