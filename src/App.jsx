@@ -10,143 +10,187 @@ class App extends React.Component {
     this.state = {
       cardName: '',
       cardDescription: '',
+      cardAttr1: '0',
+      cardAttr2: '0',
+      cardAttr3: '0',
       cardImage: '',
-      cardAttr1: '',
-      cardAttr2: '',
-      cardAttr3: '',
       cardRare: 'normal',
       cardTrunfo: false,
       hasTrunfo: false,
       isSaveButtonDisabled: true,
-      savedCard: [],
+      allCards: [],
+      filterValue: '',
+      filterRare: 'todas',
+      filterTrunfo: false,
     };
   }
 
   onInputChange = ({ target }) => {
     const { name } = target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const inputValue = target.type === 'checkbox' ? target.checked : target.value;
 
-    this.setState({ [name]: value }, () => {
-      const {
-        cardName,
-        cardDescription,
-        cardImage,
-        cardAttr1,
-        cardAttr2,
-        cardAttr3,
-      } = this.state;
-
-      const cardAttr = [cardAttr1, cardAttr2, cardAttr3];
-      const fieldInputs = [cardName, cardDescription, cardImage];
-      const maxAttr = 90;
-      const maxSumOfAttr = 210;
-      const checkEmpty = fieldInputs.some((data) => data.length === 0);
-      const checkAtt = cardAttr.some(
-        (data) => data > maxAttr || data < 0 || data === '',
-      );
-      const sumOfAttr = Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3);
-
-      if (checkAtt === true || checkEmpty === true) {
-        this.setState({ isSaveButtonDisabled: true });
-      } else if (sumOfAttr > maxSumOfAttr) {
-        this.setState({ isSaveButtonDisabled: true });
-      } else {
-        this.setState({ isSaveButtonDisabled: false });
-      }
+    this.setState({ [name]: inputValue }, () => {
+      this.setState({ isSaveButtonDisabled: this.formValidation() });
     });
-  }
-
-  saveDeckCard = (card) => {
-    this.setState((prevState) => (
-      { savedCard: [...prevState.savedCard, card] }));
   };
 
   onSaveButtonClick = (event) => {
     event.preventDefault();
-    this.validationHasTrunfo();
+    this.setState((preventDefault) => (
+      { allCards: [...preventDefault.allCards, this.newCard()] }
+    ));
+    this.clearForm();
+    this.trunfoIsChecked();
+  };
 
+  newCard = () => {
     const {
       cardName,
       cardDescription,
-      cardImage,
       cardAttr1,
       cardAttr2,
       cardAttr3,
+      cardImage,
       cardRare,
       cardTrunfo,
       hasTrunfo,
     } = this.state;
 
-    this.saveDeckCard({
+    const actualCreateCard = {
       cardName,
       cardDescription,
-      cardImage,
       cardAttr1,
       cardAttr2,
       cardAttr3,
+      cardImage,
       cardRare,
       cardTrunfo,
       hasTrunfo,
-    });
+    };
 
-    this.setState({
-      cardName: '',
-      cardDescription: '',
-      cardImage: '',
-      cardAttr1: '0',
-      cardAttr2: '0',
-      cardAttr3: '0',
-      cardRare: 'normal',
-      cardTrunfo: false,
-    });
+    return actualCreateCard;
   };
 
-  validationHasTrunfo = () => {
+  clearForm = () => {
+    this.setState((
+      {
+        cardName: '',
+        cardDescription: '',
+        cardAttr1: '0',
+        cardAttr2: '0',
+        cardAttr3: '0',
+        cardImage: '',
+        cardRare: 'normal',
+        cardTrunfo: false,
+        isSaveButtonDisabled: true,
+      }));
+  }
+
+  formValidation = () => {
+    let {
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+    } = this.state;
+
+    const { cardName, cardDescription, cardImage } = this.state;
+
+    const atualState = [cardName, cardDescription, cardImage];
+    const maxSolo = 90;
+    const minSolo = 0;
+    const maxValueTotal = 210;
+
+    cardAttr1 = Number(cardAttr1);
+    cardAttr2 = Number(cardAttr2);
+    cardAttr3 = Number(cardAttr3);
+
+    if (atualState.some((verification) => verification === '')) return true;
+    if (cardAttr1 < minSolo || cardAttr1 > maxSolo || cardAttr1 === '') return true;
+    if (cardAttr2 < minSolo || cardAttr2 > maxSolo || cardAttr2 === '') return true;
+    if (cardAttr3 < minSolo || cardAttr3 > maxSolo || cardAttr3 === '') return true;
+    if ((cardAttr1 + cardAttr2 + cardAttr3) > maxValueTotal) return true;
+    return false;
+  }
+
+  deleteCardClick = (atualCard) => {
+    const { allCards } = this.state;
+    const newState = allCards.filter((card) => card !== atualCard);
+    this.setState({
+      allCards: newState,
+    }, () => this.trunfoIsChecked());
+  }
+
+  trunfoIsChecked = () => {
     const { cardTrunfo } = this.state;
     if (cardTrunfo) {
       this.setState(
         { hasTrunfo: true },
       );
     } else {
-      this.setState(
-        { hasTrunfo: false },
-      );
+      this.setState({
+        hasTrunfo: false,
+      });
     }
+  }
+
+  filterChange = ({ target }) => {
+    const { name, value } = target;
+    const filterValue = target.type === 'checkbox' ? target.checked : value;
+    this.setState({ [name]: filterValue }, () => {
+      this.allFilterCards();
+    });
+  };
+
+  allFilterCards = () => {
+    const { allCards, filterValue, filterRare, filterTrunfo } = this.state;
+    const trunfoCard = allCards.filter(({ cardTrunfo }) => cardTrunfo);
+
+    if (filterTrunfo) return trunfoCard;
+    let filteredCards = allCards.filter((card) => card.cardName.includes(filterValue));
+    if (filterRare !== 'todas') {
+      filteredCards = filteredCards.filter(({ cardRare }) => cardRare === filterRare);
+    }
+    return filteredCards;
   };
 
   render() {
     const {
       cardName,
       cardDescription,
-      cardImage,
       cardAttr1,
       cardAttr2,
       cardAttr3,
+      cardImage,
       cardRare,
       cardTrunfo,
-      isSaveButtonDisabled,
       hasTrunfo,
-      savedCard,
+      isSaveButtonDisabled,
+      deleteCardClick,
       filterValue,
       filterRare,
       filterTrunfo,
     } = this.state;
 
+    const atualStates = {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+      hasTrunfo,
+      isSaveButtonDisabled,
+      deleteCardClick,
+    };
+
     return (
       <div>
         <h1>Tryunfo</h1>
         <Form
+          { ...atualStates }
           onInputChange={ this.onInputChange }
-          cardName={ cardName }
-          cardDescription={ cardDescription }
-          cardImage={ cardImage }
-          cardAttr1={ cardAttr1 }
-          cardAttr2={ cardAttr2 }
-          cardAttr3={ cardAttr3 }
-          cardRare={ cardRare }
-          cardTrunfo={ cardTrunfo }
-          hasTrunfo={ hasTrunfo }
-          isSaveButtonDisabled={ isSaveButtonDisabled }
           onSaveButtonClick={ this.onSaveButtonClick }
         />
         <Filters
@@ -155,25 +199,16 @@ class App extends React.Component {
           filterRare={ filterRare }
           filterTrunfo={ filterTrunfo }
         />
-        <Card
-          onInputChange={ this.onInputChange }
-          cardName={ cardName }
-          cardDescription={ cardDescription }
-          cardImage={ cardImage }
-          cardAttr1={ cardAttr1 }
-          cardAttr2={ cardAttr2 }
-          cardAttr3={ cardAttr3 }
-          cardRare={ cardRare }
-          cardTrunfo={ cardTrunfo }
-          isSaveButtonDisabled={ isSaveButtonDisabled }
-          onSaveButtonClick={ this.onSaveButtonClick }
-        />
+        <section className="preview">
+          <p className="p-title">Pré-visualização</p>
+          <Card { ...atualStates } />
+        </section>
         <Deck
-          savedCard={ savedCard }
+          allFilterCards={ this.allFilterCards }
+          deleteCardClick={ this.deleteCardClick }
         />
       </div>
     );
   }
 }
-
 export default App;
