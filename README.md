@@ -1,10 +1,10 @@
 # Tryunfo
 
-Aplicação em React com criação de componentes de classe e passagem de props.
+Aplicação em React com criação de formulários utilizando sintaxe JSX com as tags: input, textarea, select, form e checkbox.
 
 ![preview](.github/preview.gif)
 
-Essa aplicação simulará uma visualização do **Sistema Solar**, bem como informações sobre diversas missões espacias que ocorreram ao longo da história.
+Essa aplicação simulará um personalizador de cartas, similar ao jogo super trunfo, onde podemos criar um baralho com: nome, imagens (Basta ter o endereço da url), atributos, e com isso criar cartas com qualquer tema.
 
 ## 🚀 Tecnologia
 
