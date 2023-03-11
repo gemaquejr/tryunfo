@@ -40,7 +40,7 @@ class Form extends React.Component {
             id="cardDescription"
             name="cardDescription"
             data-testid="description-input"
-            placeholder="Descreva esse card."
+            placeholder="Descrição"
             value={ cardDescription }
             onChange={ onInputChange }
           />
@@ -74,11 +74,11 @@ class Form extends React.Component {
           />
           <hr />
           <input
-            className="input-text input-link"
+            className="input-text"
             id="cardImage"
             name="cardImage"
             data-testid="image-input"
-            placeholder="Selecione sua imagem url"
+            placeholder="Insira endereço url"
             type="text"
             value={ cardImage }
             onChange={ onInputChange }
@@ -94,16 +94,16 @@ class Form extends React.Component {
               value={ cardRare }
               onChange={ onInputChange }
             >
-              <option value="normal" style={ { color: 'blue' } }>Normal</option>
-              <option value="raro" style={ { color: 'purple' } }>Raro</option>
-              <option value="muito raro" style={ { color: 'orange' } }>Muito raro</option>
+              <option value="Normal" style={ { color: 'blue' } }>Normal</option>
+              <option value="Raro" style={ { color: 'purple' } }>Raro</option>
+              <option value="Muito raro" style={ { color: 'orange' } }>Muito raro</option>
             </select>
           </label>
           { hasTrunfo
             ? <span> Você já tem um Super Trunfo em seu baralho.</span>
             : (
               <label htmlFor="cardTrunfo">
-                É a super trunfo?
+                Super trunfo?
                 <input
                   className="input-checkBox"
                   data-testid="trunfo-input"
@@ -123,7 +123,7 @@ class Form extends React.Component {
             type="submit"
             disabled={ isSaveButtonDisabled }
             onClick={ onSaveButtonClick }
-            value="Save card"
+            value="Criar carta"
           />
         </form>
       </>

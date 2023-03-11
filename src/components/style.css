@@ -8,65 +8,112 @@ body {
   display: flex;
 }
 
+h1 {
+  text-align: center;
+  font-size: 40px;
+  color: rgb(98, 219, 251);
+}
+
 form {
+  display: flex;
+  background-color: rgba(255, 215, 0, 0.5);
   align-items: center;
   border-radius: 20px;
   box-shadow: 1px 1px 16px black;
-  background-color: rgba(211, 211, 211, 0.376);
-  display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 10px;
   height: 75vh;
-  width: 25vw;
+  width: auto;
+}
+
+p {
+  color: black;
+  font-weight: bold;
+}
+
+label {
+  color: rgb(98, 219, 251);
+  font-weight: bold;
+}
+
+label[for="cardRare"] {
+  color: white;
+  font-weight: bold;
+}
+
+label[for="cardTrunfo"] {
+  color: white;
+  font-weight: bold;
+}
+
+label[for="filterName"] {
+  color: white;
+  font-weight: bold;
+}
+
+.filters {
+  padding: 10px;
+}
+
+.p-title {
+  color: rgb(98, 219, 251);
+  font-weight: bold;
+  align-text: center;
+  margin-left: 180px;
 }
 
 .container-card {
-  align-items: center;
+  background-color: rgba(220, 220, 220);
   border-radius: 20px;
   box-shadow: 1px 1px 16px black;
-  background-color: rgba(211, 211, 211, 0.376);
   border: 4px solid black;
-  letter-spacing: 3px;
-  margin-bottom: 20px;
-  margin-top: 60px;
-  outline: none;
-  transition: all 0.1s linear;
+  letter-spacing: 5px;
   padding: 10px;
-  user-select: none;
   height: 75vh;
-  width: 25vw;
+  width: auto;
+}
+
+.card-style {
+  display: flex;
+  background-color: rgb(46, 139, 87);
+  align-items: center;
+  border-radius: 20px;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  width: auto;
 }
 
 .title-card {
-  background-color: whitesmoke;
+  background-color: rgb(255, 228, 196);
   border: 2px groove whitesmoke;
   border-radius: 20px;
   color: black;
+  font-weight: bold;
+  text-align: center;
   text-transform: uppercase;
-  padding: 10px;
+  padding: 5px;
 }
 
 .input-text {
-  background-color: rgba(211, 211, 211, 0.376);
   border: none;
-  border-radius: 20px;
+  border-radius: 15px;
   box-shadow: 1px 1px 16px black;
+  color: black;
+  font-weight: bold;
+  text-align: center;
   letter-spacing: 5px;
-  margin-bottom: 15px;
-  padding: 5px;
+  margin-bottom: 10px;
+  margin-top: 5px;
+  padding: 10px;
   transition: all 0.1s linear;
-  user-select: none;
-  width: 60%;
+  user-select: text;
+  width: 70%;
 }
 
 .input-text:hover {
-  box-shadow: 5px 4px 6px white;
+  box-shadow: 5px 4px 6px black;
   transform: scale(1.05);
-}
-
-.input-link {
-  max-width: 60vw;
 }
 
 .input-select {
@@ -75,62 +122,52 @@ form {
   border-radius: 20px;
   margin-left: 5px;
   padding: 2px;
-  width: 45%;
+  width: 43%;
 }
 
 .input-checkBox {
-  box-shadow: 2px 2px 8px white;
-  height: 13px;
-  user-select: none;
+  box-shadow: 2px 2px 8px black;
   width: 15px;
 }
 
 textarea {
-  height: 15vh;
+  height: 10vh;
   overflow: auto;
 }
 
 hr {
   background-color: white;
-  height: 2px;
-  width: 90%;
+  height: 4px;
+  width: 80%;
 }
 
 .btn-save {
-  border: none;
-  border-bottom: 5px groove rgba(84, 12, 84, 0.76);
+  border: purple;
+  border-bottom: 5px groove rgba(84, 12, 84, 0.5);
   border-radius: 20px;
+  color: black;
+  font-weight: bold;
   margin-top: 10px;
-  outline: none;
   transition: all 0.1s linear;
-  height: 5vh;
-  width: 10vw;
+  height: 6vh;
+  width: 7vw;
 }
 
 .btn-save:active {
-  transform: scale(1.1);
+  transform: scale(1.5);
 }
 
 .image-card {
   border-radius: 20px;
   box-shadow: 2px 2px 8px white;
-  height: 200px;
-  width: 200px;
-}
-
-.card-style {
-  align-items: center;
-  background-color: rgb(22, 108, 89);
-  border: none;
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  justify-content: center;
+  height: 135px;
+  width: 170px;
 }
 
 .paragraph-style {
-  background-color: lightgray;
-  border-radius: 15px;
+  background-color: rgb(255, 228, 196);
+  border-radius: 20px;
+  color: black;
+  font-weight: bold;
   padding: 7px;
 }

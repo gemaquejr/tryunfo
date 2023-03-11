@@ -14,7 +14,7 @@ class App extends React.Component {
       cardAttr2: '0',
       cardAttr3: '0',
       cardImage: '',
-      cardRare: 'normal',
+      cardRare: 'Normal',
       cardTrunfo: false,
       hasTrunfo: false,
       isSaveButtonDisabled: true,
@@ -193,16 +193,16 @@ class App extends React.Component {
           onInputChange={ this.onInputChange }
           onSaveButtonClick={ this.onSaveButtonClick }
         />
+        <section className="preview">
+          <p className="p-title">Pré-visualização</p>
+          <Card { ...atualStates } />
+        </section>
         <Filters
           filterChange={ this.filterChange }
           filterValue={ filterValue }
           filterRare={ filterRare }
           filterTrunfo={ filterTrunfo }
         />
-        <section className="preview">
-          <p className="p-title">Pré-visualização</p>
-          <Card { ...atualStates } />
-        </section>
         <Deck
           allFilterCards={ this.allFilterCards }
           deleteCardClick={ this.deleteCardClick }

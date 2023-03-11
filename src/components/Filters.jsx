@@ -5,7 +5,7 @@ class Filters extends Component {
   render() {
     const { filterValue, filterChange, filterRare, filterTrunfo } = this.props;
     return (
-      <div>
+      <div className="filters">
         <label htmlFor="filterName">
           Filtrar por :
           <input
@@ -14,7 +14,7 @@ class Filters extends Component {
             name="filterValue"
             data-testid="name-filter"
             onChange={ filterChange }
-            placeholder="nome / super trunfo / raridade"
+            placeholder="Cartas"
           />
           <select
             value={ filterRare }
