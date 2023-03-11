@@ -1,6 +1,6 @@
 # Tryunfo
 
-Aplicação em React com criação de formulários utilizando sintaxe JSX com as tags: input, textarea, select, form e checkbox.
+Aplicação para criação de formulários utilizando sintaxe JSX com as tags: input, textarea, select, form e checkbox, fazendo uso da renderização condicional nos componentes react.
 
 ![preview](.github/preview.gif)
 
