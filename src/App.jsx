@@ -188,17 +188,19 @@ class App extends React.Component {
     };
 
     return (
-      <div>
+      <>
         <h1>Tryunfo</h1>
-        <Form
-          { ...atualStates }
-          onInputChange={ this.onInputChange }
-          onSaveButtonClick={ this.onSaveButtonClick }
-        />
-        <section className="preview">
-          <p className="p-title">Pré-visualização</p>
-          <Card { ...atualStates } />
-        </section>
+        <div className="container_main">
+          <Form
+            { ...atualStates }
+            onInputChange={ this.onInputChange }
+            onSaveButtonClick={ this.onSaveButtonClick }
+          />
+          <section className="container_preview">
+            <p className="p-title">Pré-visualização</p>
+            <Card { ...atualStates } />
+          </section>
+        </div>
         <Filters
           filterChange={ this.filterChange }
           filterValue={ filterValue }
@@ -209,7 +211,7 @@ class App extends React.Component {
           allFilterCards={ this.allFilterCards }
           deleteCardClick={ this.deleteCardClick }
         />
-      </div>
+      </>
     );
   }
 }
