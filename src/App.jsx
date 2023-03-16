@@ -4,6 +4,8 @@ import Card from './components/Card';
 import Deck from './components/Deck';
 import Filters from './components/Filters';
 
+import './reset.css';
+
 class App extends React.Component {
   constructor() {
     super();
