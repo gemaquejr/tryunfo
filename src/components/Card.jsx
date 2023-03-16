@@ -17,40 +17,38 @@ class Card extends React.Component {
     } = this.props;
 
     return (
-      <section className="container-card">
-        <div className="card-style">
-          <p className="title-card" data-testid="name-card">
-            { cardName }
-          </p>
-          <img
-            className="image-card"
-            data-testid="image-card"
-            src={ cardImage }
-            alt={ cardName }
-          />
-          <p data-testid="description-card">
-            { cardDescription }
-          </p>
-          <hr />
-          <p className="paragraph-style" data-testid="attr1-card">
-            Atributo 1................
-            { cardAttr1 }
-          </p>
-          <p className="paragraph-style" data-testid="attr2-card">
-            Atributo 2................
-            { cardAttr2 }
-          </p>
-          <p className="paragraph-style" data-testid="attr3-card">
-            Atributo 3................
-            { cardAttr3 }
-          </p>
-          <hr />
-          <p data-testid="rare-card">
-            { cardRare }
-          </p>
-          { cardTrunfo && <p data-testid="trunfo-card">Super Trunfo</p> }
-        </div>
-      </section>
+      <div className="card">
+        <p className="title-card" data-testid="name-card">
+          { cardName }
+        </p>
+        <img
+          className="image-card"
+          data-testid="image-card"
+          src={ cardImage }
+          alt={ cardName }
+        />
+        <p data-testid="description-card">
+          { cardDescription }
+        </p>
+        <hr />
+        <p className="paragraph-style" data-testid="attr1-card">
+          Atributo 1................
+          { cardAttr1 }
+        </p>
+        <p className="paragraph-style" data-testid="attr2-card">
+          Atributo 2................
+          { cardAttr2 }
+        </p>
+        <p className="paragraph-style" data-testid="attr3-card">
+          Atributo 3................
+          { cardAttr3 }
+        </p>
+        <hr />
+        <p data-testid="rare-card">
+          { cardRare }
+        </p>
+        { cardTrunfo && <p data-testid="trunfo-card">Super Trunfo</p> }
+      </div>
     );
   }
 }
