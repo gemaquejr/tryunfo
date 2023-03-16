@@ -18,19 +18,19 @@ class Card extends React.Component {
 
     return (
       <div className="card">
-        <p className="title-card" data-testid="name-card">
-          { cardName }
-        </p>
         <img
           className="image-card"
           data-testid="image-card"
           src={ cardImage }
           alt={ cardName }
         />
-        <p data-testid="description-card">
+        <p className="title-card" data-testid="name-card">
+          { cardName }
+        </p>
+        <p className="description-card" data-testid="description-card">
           { cardDescription }
         </p>
-        <hr />
+
         <p className="paragraph-style" data-testid="attr1-card">
           Atributo 1................
           { cardAttr1 }
@@ -43,11 +43,11 @@ class Card extends React.Component {
           Atributo 3................
           { cardAttr3 }
         </p>
-        <hr />
-        <p data-testid="rare-card">
+
+        <p className="rare-card" data-testid="rare-card">
           { cardRare }
         </p>
-        { cardTrunfo && <p data-testid="trunfo-card">Super Trunfo</p> }
+        { cardTrunfo && <p className="trunfo" data-testid="trunfo-card">Super Trunfo</p> }
       </div>
     );
   }
