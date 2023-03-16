@@ -5,6 +5,7 @@ import Deck from './components/Deck';
 import Filters from './components/Filters';
 
 import './reset.css';
+import './style.css';
 
 class App extends React.Component {
   constructor() {
@@ -188,7 +189,7 @@ class App extends React.Component {
     };
 
     return (
-      <>
+      <div className="container_app">
         <h1>Tryunfo</h1>
         <div className="container_main">
           <Form
@@ -201,17 +202,19 @@ class App extends React.Component {
             <Card { ...atualStates } />
           </section>
         </div>
-        <Filters
-          filterChange={ this.filterChange }
-          filterValue={ filterValue }
-          filterRare={ filterRare }
-          filterTrunfo={ filterTrunfo }
-        />
-        <Deck
-          allFilterCards={ this.allFilterCards }
-          deleteCardClick={ this.deleteCardClick }
-        />
-      </>
+        <div className="container_deck">
+          <Filters
+            filterChange={ this.filterChange }
+            filterValue={ filterValue }
+            filterRare={ filterRare }
+            filterTrunfo={ filterTrunfo }
+          />
+          <Deck
+            allFilterCards={ this.allFilterCards }
+            deleteCardClick={ this.deleteCardClick }
+          />
+        </div>
+      </div>
     );
   }
 }
