@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './style.css';
+// import './style.css';
 
 class Form extends React.Component {
   render() {
@@ -21,112 +21,109 @@ class Form extends React.Component {
     } = this.props;
 
     return (
-      <>
-        <div className="bg-blur" />
-        <form action="">
-          <input
-            className="input-text"
-            id="cardName"
-            name="cardName"
-            data-testid="name-input"
-            placeholder="Nome da Carta"
-            type="text"
-            value={ cardName }
+      <form action="">
+        <input
+          className="input-text"
+          id="cardName"
+          name="cardName"
+          data-testid="name-input"
+          placeholder="Nome da Carta"
+          type="text"
+          value={ cardName }
+          onChange={ onInputChange }
+        />
+        <hr />
+        <textarea
+          className="input-text"
+          id="cardDescription"
+          name="cardDescription"
+          data-testid="description-input"
+          placeholder="Descrição"
+          value={ cardDescription }
+          onChange={ onInputChange }
+        />
+        <hr />
+        <input
+          className="input-text"
+          id="cardAttr1"
+          name="cardAttr1"
+          data-testid="attr1-input"
+          type="number"
+          value={ cardAttr1 }
+          onChange={ onInputChange }
+        />
+        <input
+          className="input-text"
+          id="cardAttr2"
+          name="cardAttr2"
+          data-testid="attr2-input"
+          type="number"
+          value={ cardAttr2 }
+          onChange={ onInputChange }
+        />
+        <input
+          className="input-text"
+          id="cardAttr3"
+          name="cardAttr3"
+          data-testid="attr3-input"
+          type="number"
+          value={ cardAttr3 }
+          onChange={ onInputChange }
+        />
+        <hr />
+        <input
+          className="input-text"
+          id="cardImage"
+          name="cardImage"
+          data-testid="image-input"
+          placeholder="Insira endereço url"
+          type="text"
+          value={ cardImage }
+          onChange={ onInputChange }
+        />
+        <hr />
+        <label htmlFor="cardRare">
+          Raridade:
+          <select
+            className="input-select"
+            data-testid="rare-input"
+            name="cardRare"
+            id="cardRare"
+            value={ cardRare }
             onChange={ onInputChange }
-          />
-          <hr />
-          <textarea
-            className="input-text"
-            id="cardDescription"
-            name="cardDescription"
-            data-testid="description-input"
-            placeholder="Descrição"
-            value={ cardDescription }
-            onChange={ onInputChange }
-          />
-          <hr />
-          <input
-            className="input-text"
-            id="cardAttr1"
-            name="cardAttr1"
-            data-testid="attr1-input"
-            type="number"
-            value={ cardAttr1 }
-            onChange={ onInputChange }
-          />
-          <input
-            className="input-text"
-            id="cardAttr2"
-            name="cardAttr2"
-            data-testid="attr2-input"
-            type="number"
-            value={ cardAttr2 }
-            onChange={ onInputChange }
-          />
-          <input
-            className="input-text"
-            id="cardAttr3"
-            name="cardAttr3"
-            data-testid="attr3-input"
-            type="number"
-            value={ cardAttr3 }
-            onChange={ onInputChange }
-          />
-          <hr />
-          <input
-            className="input-text"
-            id="cardImage"
-            name="cardImage"
-            data-testid="image-input"
-            placeholder="Insira endereço url"
-            type="text"
-            value={ cardImage }
-            onChange={ onInputChange }
-          />
-          <hr />
-          <label htmlFor="cardRare">
-            Raridade:
-            <select
-              className="input-select"
-              data-testid="rare-input"
-              name="cardRare"
-              id="cardRare"
-              value={ cardRare }
-              onChange={ onInputChange }
-            >
-              <option value="Normal" style={ { color: 'blue' } }>Normal</option>
-              <option value="Raro" style={ { color: 'purple' } }>Raro</option>
-              <option value="Muito raro" style={ { color: 'orange' } }>Muito raro</option>
-            </select>
-          </label>
-          { hasTrunfo
-            ? <span> Você já tem um Super Trunfo em seu baralho.</span>
-            : (
-              <label htmlFor="cardTrunfo">
-                Super trunfo?
-                <input
-                  className="input-checkBox"
-                  data-testid="trunfo-input"
-                  type="checkbox"
-                  id="cardTrunfo"
-                  name="cardTrunfo"
-                  checked={ cardTrunfo }
-                  onChange={ onInputChange }
-                />
-              </label>
-            ) }
-          <input
-            className="btn-save"
-            id="save"
-            name="save"
-            data-testid="save-button"
-            type="submit"
-            disabled={ isSaveButtonDisabled }
-            onClick={ onSaveButtonClick }
-            value="Criar carta"
-          />
-        </form>
-      </>
+          >
+            <option value="Normal" style={ { color: 'blue' } }>Normal</option>
+            <option value="Raro" style={ { color: 'purple' } }>Raro</option>
+            <option value="Muito raro" style={ { color: 'orange' } }>Muito raro</option>
+          </select>
+        </label>
+        { hasTrunfo
+          ? <span> Você já tem um Super Trunfo em seu baralho.</span>
+          : (
+            <label htmlFor="cardTrunfo">
+              Super trunfo?
+              <input
+                className="input-checkBox"
+                data-testid="trunfo-input"
+                type="checkbox"
+                id="cardTrunfo"
+                name="cardTrunfo"
+                checked={ cardTrunfo }
+                onChange={ onInputChange }
+              />
+            </label>
+          ) }
+        <input
+          className="btn-save"
+          id="save"
+          name="save"
+          data-testid="save-button"
+          type="submit"
+          disabled={ isSaveButtonDisabled }
+          onClick={ onSaveButtonClick }
+          value="Criar carta"
+        />
+      </form>
     );
   }
 }

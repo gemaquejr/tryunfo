@@ -4,6 +4,9 @@ import Card from './components/Card';
 import Deck from './components/Deck';
 import Filters from './components/Filters';
 
+import './reset.css';
+import './style.css';
+
 class App extends React.Component {
   constructor() {
     super();
@@ -186,27 +189,31 @@ class App extends React.Component {
     };
 
     return (
-      <div>
+      <div className="container_app">
         <h1>Tryunfo</h1>
-        <Form
-          { ...atualStates }
-          onInputChange={ this.onInputChange }
-          onSaveButtonClick={ this.onSaveButtonClick }
-        />
-        <section className="preview">
-          <p className="p-title">Pré-visualização</p>
-          <Card { ...atualStates } />
-        </section>
-        <Filters
-          filterChange={ this.filterChange }
-          filterValue={ filterValue }
-          filterRare={ filterRare }
-          filterTrunfo={ filterTrunfo }
-        />
-        <Deck
-          allFilterCards={ this.allFilterCards }
-          deleteCardClick={ this.deleteCardClick }
-        />
+        <div className="container_main">
+          <Form
+            { ...atualStates }
+            onInputChange={ this.onInputChange }
+            onSaveButtonClick={ this.onSaveButtonClick }
+          />
+          <section className="container_preview">
+            <p className="p-title">Pré-visualização</p>
+            <Card { ...atualStates } />
+          </section>
+        </div>
+        <div className="container_deck">
+          <Filters
+            filterChange={ this.filterChange }
+            filterValue={ filterValue }
+            filterRare={ filterRare }
+            filterTrunfo={ filterTrunfo }
+          />
+          <Deck
+            allFilterCards={ this.allFilterCards }
+            deleteCardClick={ this.deleteCardClick }
+          />
+        </div>
       </div>
     );
   }
